@@ -107,6 +107,18 @@ function grb() {
     ctx.putImageData(imageData, 0, 0);
 }
 
+function clearChanges() {
+    img.src = reader.result;
+}
+
+function download(){
+    const image = canvas.toDataURL();
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = "image.png";
+    link.click();
+}
+
 
 const buttons = document.querySelectorAll("button");
 
@@ -117,9 +129,8 @@ buttons[3].addEventListener("click", rbg);
 buttons[4].addEventListener("click", bgr);
 buttons[5].addEventListener("click", gbr);
 buttons[6].addEventListener("click", grb);
-buttons[7].addEventListener("click", () => {
-    location.reload();
-});
+buttons[7].addEventListener("click", clearChanges);
+buttons[8].addEventListener("click", download);
 
 const imageLoader = document.getElementById("uploader");
 imageLoader.addEventListener("change", uploadImage);
